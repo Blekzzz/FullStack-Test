@@ -1,7 +1,7 @@
 const { verifyToken } = require("../helpers/jwt")
 const { User } = require('../models')
 
-async function userAuthentication(req, res, next) {
+async function Authentication(req, res, next) {
     try {
         const { access_token } = req.headers
         if (!access_token) throw ({ name: "AuthenticationError" })
@@ -14,7 +14,8 @@ async function userAuthentication(req, res, next) {
 
         req.user = {
             id: verified.id,
-            email: verified.email
+            username: verified.username,
+            role: user.role
         }
         next()
     } catch (error) {
@@ -22,4 +23,4 @@ async function userAuthentication(req, res, next) {
     }
 }
 
-module.exports = userAuthentication
+module.exports = Authentication

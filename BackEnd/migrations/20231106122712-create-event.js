@@ -28,7 +28,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM('Pending', 'Approved', 'Rejected'),
       },
       remarks: {
         type: Sequelize.STRING

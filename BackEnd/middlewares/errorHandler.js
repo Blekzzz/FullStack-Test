@@ -21,6 +21,14 @@ function errorHandler(err, res, res, next) {
             status = 400
             message = err.errors[0].message
             break;
+        case "UserNotFound":
+            status = 401
+            message = "User not found!"
+            break;
+        case "InvalidPassword":
+            status = 401
+            message = "Invalid Password"
+            break;
     }
 
     console.log(err)
