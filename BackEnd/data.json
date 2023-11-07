@@ -1,0 +1,16 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "username": "Nathanza",
+            "password": "testes",
+            "role": "company_hr"
+        },
+        {
+            "id": 2,
+            "username": "Gaurangga",
+            "password": "testes",
+            "role": "vendor_admin"
+        }
+    ]
+}
