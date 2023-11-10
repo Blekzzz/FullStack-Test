@@ -5,6 +5,10 @@ const eventRouter = require('./eventRouter')
 const Authentication = require('../middlewares/authentication')
 const router = express.Router()
 
+router.get('/', (req, res) => {
+    res.send("Hello World")
+})
+
 router.post('/login', userLogin)
 
 router.use(Authentication)
