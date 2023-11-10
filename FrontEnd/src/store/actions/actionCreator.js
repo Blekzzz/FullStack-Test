@@ -51,7 +51,16 @@ export const fetchEventDetailSuccess = (payload) => {
 
 export const fetchDetail = (id) => {
     return async function (dispatch, getState) {
-        console.log(id, '=> ini id data')
+        await fetch(url, `/events/${id}`, {
+            headers: { access_token: localStorage.access_token }
+        })
+            .then(res => res.json())
+            .then(data => {
+                dispatch(fetchEventDetailSuccess(data))
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 }
 

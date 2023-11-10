@@ -13,7 +13,6 @@ export default function PopUpEventVendor({ event, closePopup }) {
         if (selectedDate) {
             dispatch(handleApproveEvent(event.id, selectedDate))
                 .then(() => {
-                    console.log(`Approved: ${selectedDate}`);
                     closePopup()
                 })
         } else {

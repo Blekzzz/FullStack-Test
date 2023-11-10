@@ -134,9 +134,6 @@ class EventController {
             const { eventId } = req.params;
             const { reason } = req.body;
 
-            console.log(eventId, '-> ini event id')
-            console.log(reason, '-> ini reason')
-
             const event = await Event.findByPk(eventId);
 
             if (!event) {
