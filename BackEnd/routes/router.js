@@ -10,10 +10,9 @@ router.get('/', (req, res) => {
 })
 
 router.post('/login', userLogin)
+router.get('/users', getUser)
 
 router.use(Authentication)
-
-router.get('/users', getUser)
 router.get('/users/vendor', getVendor)
 router.use('/events', eventRouter)
 

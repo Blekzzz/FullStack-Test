@@ -25,7 +25,7 @@ export default function LoginPage() {
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
-        fetch("http://localhost:3000/login", {
+        fetch("https://fullstack-test.blekzzz.com/login/login", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json"

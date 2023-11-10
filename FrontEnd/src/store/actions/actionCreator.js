@@ -1,6 +1,7 @@
 import { FETCH_COMPANY_EVENTS, FETCH_DETAIL_EVENT, FETCH_USER_VENDOR, FETCH_VENDOR_EVENTS, FINISH_LOADING } from "./actionType"
 
-const url = "http://localhost:3000"
+// const url = "http://localhost:3000"
+const url = "https://fullstack-test.blekzzz.com"
 
 export const finishLoading = () => {
     return {
