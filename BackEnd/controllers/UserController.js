@@ -34,7 +34,22 @@ class UserController {
 
             const token = signToken({ id: user.id, username: username, role: user.role })
 
-            res.status(200).json({ access_token: token })
+            res.status(200).json({ access_token: token, id: user.id, role: user.role })
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getVendor(req, res, next) {
+        try {
+            const users = await User.findAll({
+                where: { role: "vendor_admin" },
+                attributes: {
+                    exclude: ['createdAt', 'updatedAt', 'password']
+                }
+            })
+
+            res.status(200).json(users)
         } catch (error) {
             next(error)
         }

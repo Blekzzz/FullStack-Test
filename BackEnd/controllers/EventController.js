@@ -22,13 +22,53 @@ class EventController {
         }
     }
 
-    static async getEvents(req, res, next) {
+    static async getEventVendor(req, res, next) {
         try {
             const events = await Event.findAll({
-                include: [{ model: User, as: 'creator' }, { model: User, as: 'vendor' }],
+                where: { vendorUserId: req.user.id },
+                include: [
+                    {
+                        model: User, as: 'creator',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    },
+                    {
+                        model: User, as: 'vendor',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    }
+                ]
             });
 
-            res.json(events);
+            res.status(200).json(events);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    static async getEventCompany(req, res, next) {
+        try {
+            const events = await Event.findAll({
+                where: { createdByUserId: req.user.id },
+                include: [
+                    {
+                        model: User, as: 'creator',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    },
+                    {
+                        model: User, as: 'vendor',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    }
+                ]
+            });
+
+            res.status(200).json(events);
         } catch (error) {
             next(error)
         }
@@ -39,12 +79,25 @@ class EventController {
             const { eventId } = req.params;
 
             const event = await Event.findByPk(eventId, {
-                include: [{ model: User, as: 'creator' }, { model: User, as: 'vendor' }],
+                include: [
+                    {
+                        model: User, as: 'creator',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    },
+                    {
+                        model: User, as: 'vendor',
+                        attributes: {
+                            exclude: ['createdAt', 'updatedAt', 'password']
+                        }
+                    }
+                ],
             });
 
             if (!event) throw ({ name: "NotFound" })
 
-            res.json(event);
+            res.status(200).json(event);
         } catch (error) {
             next(error)
         }
@@ -54,7 +107,7 @@ class EventController {
         try {
             const { eventId } = req.params;
             const { confirmedDate } = req.body;
-
+            
             const event = await Event.findByPk(eventId);
 
             if (!event) {
@@ -79,7 +132,10 @@ class EventController {
     static async eventReject(req, res, next) {
         try {
             const { eventId } = req.params;
-            const { rejectionReason } = req.body;
+            const { reason } = req.body;
+
+            console.log(eventId, '-> ini event id')
+            console.log(reason, '-> ini reason')
 
             const event = await Event.findByPk(eventId);
 
@@ -92,7 +148,7 @@ class EventController {
             }
 
             event.status = 'Rejected';
-            event.remarks = rejectionReason;
+            event.remarks = reason;
 
             await event.save();
 

@@ -1,0 +1,13 @@
+body {
+  background-color: #8192d1;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
+}
+
+::selection {
+  background: #c662e5;
+  color: whitesmoke;
+}
+
+select:focus {
+  border: 3px solid #c662e5;
+}

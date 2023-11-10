@@ -1,5 +1,5 @@
 const express = require('express')
-const { userLogin, getUser } = require('../controllers/UserController')
+const { userLogin, getUser, getVendor } = require('../controllers/UserController')
 const errorHandler = require('../middlewares/errorHandler')
 const eventRouter = require('./eventRouter')
 const Authentication = require('../middlewares/authentication')
@@ -10,6 +10,7 @@ router.post('/login', userLogin)
 router.use(Authentication)
 
 router.get('/users', getUser)
+router.get('/users/vendor', getVendor)
 router.use('/events', eventRouter)
 
 router.use(errorHandler)

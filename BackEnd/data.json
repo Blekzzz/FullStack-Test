@@ -11,6 +11,30 @@
             "username": "Gaurangga",
             "password": "testes",
             "role": "vendor_admin"
+        },
+        {
+            "id": 3,
+            "username": "dlineen2",
+            "password": "testes",
+            "role": "company_hr"
+        },
+        {
+            "id": 4,
+            "username": "mliddall3",
+            "password": "testes",
+            "role": "vendor_admin"
+        },
+        {
+            "id": 5,
+            "username": "sneller4",
+            "password": "testes",
+            "role": "company_hr"
+        },
+        {
+            "id": 6,
+            "username": "ederrell5",
+            "password": "testes",
+            "role": "vendor_admin"
         }
     ]
 }
